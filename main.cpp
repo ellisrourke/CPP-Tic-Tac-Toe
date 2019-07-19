@@ -14,7 +14,7 @@ public:
     }
 
     //data members
-    string board[9] = {"-","-","-","-","-","-","-","-","-"};
+    string board[9] = {"1","2","3","4","5","6","7","8","9"};
     vector<int> filled = {};
     int totalTurns =0;
 
@@ -50,17 +50,19 @@ public:
     }
     void displayBoard(){
         for(int i=1;i<10;i++){
-            cout << board[i-1] << " ";
+            cout << " | " << board[i-1];
             if(i%3==0){
-                cout << endl;
+
+                cout << " |" << endl;
+
             }
         }
         cout << "-----------------------";
         cout << endl;
     }
-    void humanTurn(){
 
-        int pos=-1;
+    void humanTurn(){
+      int pos=-1;
         while(pos>9 || pos<1){
             cout << "choose a board position" << endl;
             cin >> pos;
@@ -86,6 +88,14 @@ public:
             computerTurn();
         }
     }
+
+    void checkWin(){
+      if()
+    }
+
+
+
+
     void play(){
         displayBoard();
         while(totalTurns<9){
