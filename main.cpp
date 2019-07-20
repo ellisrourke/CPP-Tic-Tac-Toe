@@ -65,7 +65,7 @@ public:
       int pos=-1;
         while(pos>9 || pos<1){
             cout << "choose a board position" << endl;
-            cin >> pos;
+            cin >> pos; //change to better syntax!!
         }
 
         pos--;
@@ -89,10 +89,10 @@ public:
         }
     }
 
-    void checkWin(){
+    /*void checkWin(){
       if()
     }
-
+*/
 
 
 
