@@ -8,7 +8,7 @@
 using namespace std;
 class Board{
 public:
-
+    //constructor method
     Board(){
         srand(time(nullptr));
     }
@@ -17,12 +17,32 @@ public:
     string board[9] = {"1","2","3","4","5","6","7","8","9"};
     vector<int> filled = {};
     int totalTurns =0;
+    bool gameOver = false;
 
     //member functions
     int inArray(vector<int> &arr,int check) {
         int x = (find(arr.begin(), arr.end(), check) != arr.end());
         return x;
     }
+
+    int checkWin(){
+      for(int i=0;i<9;i+=3){
+        //Check For horizontal wins
+        if(board[i] == board[i+1] && board[i] == board[i+2]){
+          if(board[i] == "X"){
+            cout << "Computer Wins" << endl;
+          } else {
+            cout << "Player Wins" << endl;
+          }
+          gameOver = true;
+          return 1;
+        }else{
+          //Check for vertical Wins
+          //cout << board[i] << board[i+3] << board[i+6] << endl;
+        }
+      }
+    }
+
     void updateBoard2D(int i,char player){
         //find array index to update
         int x = i % 3;    // % is the "modulo operator", the remainder of i / width;
@@ -41,10 +61,12 @@ public:
             cout <<  endl ;
         }
     }
+
     void updateBoard(int i,char player){
         board[i] = player;
         filled.push_back(i);
         totalTurns++;
+        checkWin();
         //cout << totalTurns << endl;
 
     }
@@ -61,47 +83,47 @@ public:
         cout << endl;
     }
 
+
     void humanTurn(){
+      if(gameOver == false){
       int pos=-1;
-        while(pos>9 || pos<1){
+        while(pos>9 || pos<1 || inArray(filled,pos-1)==1){
             cout << "choose a board position" << endl;
             cin >> pos; //change to better syntax!!
         }
-
         pos--;
-        if(inArray(filled,pos)==0) {
             updateBoard(pos,'0');
             displayBoard();
             filled.push_back(pos);
-        } else {
-            cout << "!spot taken try again!" << endl;
-            humanTurn();
         }
-    }
+      }
+
+
     void computerTurn(){
+
         int num = rand() % 9;
-        if(inArray(filled,num)==0) {
+
+
+        while(inArray(filled,num)==1){
+          num = rand() % 9;
+        }
             updateBoard(num,'X');
             displayBoard();
             filled.push_back(num);
-        } else {
-            computerTurn();
         }
-    }
-
-    /*void checkWin(){
-      if()
-    }
-*/
 
 
-
-    void play(){
+    int play(){
         displayBoard();
         while(totalTurns<9){
+          if(gameOver==false){
             humanTurn();
-            if(totalTurns<9)
+            }
+            if(totalTurns<9 && gameOver==false){
                 computerTurn();
+              } else {
+                return 0;
+              }
         }
     }
 
@@ -112,7 +134,6 @@ int main() {
     Board myBoard;
 
     myBoard.play();
-    //new
 
 
 
