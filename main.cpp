@@ -39,10 +39,17 @@ public:
         }
 
 
-        for(int i=0;i<3;i++){
+
+
+
+          //for(int k=0;k<3;K++){
+            //Check for diagonalWins
+        //  }
+        }
+        for(int j=0;j<3;j++){
           //Check For horizontal wins
-          if(board[i] == board[i+3] && board[i] == board[i+6]){
-            if(board[i] == "X"){
+          if(board[j] == board[j+3] && board[j] == board[j+6]){
+            if(board[j] == "X"){
               cout << "Computer Wins" << endl;
             } else {
               cout << "Player Wins" << endl;
@@ -50,10 +57,6 @@ public:
             gameOver = true;
             return 1;
           }
-
-          //Check for vertical Wins
-          //cout << board[i] << board[i+3] << board[i+6] << endl;
-        }
       }
     }
 
