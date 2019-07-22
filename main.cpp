@@ -127,7 +127,7 @@ public:
 
     void computerTurnOld(){
         int num = rand() % 9;
-        while(inArray(filled,num)==1){
+        while(inArray(filled,num)==0){
           num = rand() % 9;
         }
             updateBoard(num,'X');
@@ -142,21 +142,18 @@ public:
      cout << "The computer chose position " << x << endl;
    }
 
-   void computerTurn(){
+   int computerTurn(){
      //check for possible horizontal moves
      for(int i=0;i<9;i+=3){
-       //check if end pos is free
        if(board[i]==board[i+1] && inArray(filled,i+2)==0){
          submitComputerTurn(i+2);
-         break;
-         //check if middle is free
+         return 1;
        } else if(board[i]==board[i+2] && inArray(filled,i+1)==0){
          submitComputerTurn(i+1);
-         break;
-         //check if first pos is free
+         return 1;
        } else if(board[i+1]==board[i+2]  && inArray(filled,i)==0){
          submitComputerTurn(i);
-         break;
+         return 1;
        }
      }
      //////////////////////////////////////////////
@@ -164,16 +161,46 @@ public:
      for(int j=0;j<3;j++){
        if(board[j]==board[j+3] && inArray(filled,j+6)==0){
          submitComputerTurn(j+6);
-         break;
+         return 1;
      } else if(board[j]==board[j+6] && inArray(filled,j+3)==0){
        submitComputerTurn(j+3);
-       break;
+         return 1;
      } else if(board[j+3]==board[j+6] && inArray(filled,j)==0){
        submitComputerTurn(j);
-       break;
+         return 1;
      }
    }
+   //////////////////////////////////////////////
+   //check diagonal moves (already including centre)
+   //check if middle
+   if(inArray(filled,4)==1){
+     if(board[0]==board[4]){
+       submitComputerTurn(8);
+       return 1;
+     } else if(board[2]==board[4]){
+       submitComputerTurn(6);
+       return 1;
+     } else if(board[6]==board[4]){
+       submitComputerTurn(2);
+       return 1;
+     } else if(board[8]==board[4]){
+       submitComputerTurn(0);
+       return 1;
+     }
+  } else if(inArray(filled,4)==0){
+           if(board[0]==board[8]){
+             submitComputerTurn(4);
+             return 1;
+           } else if (board[2]==board[6]){
+             submitComputerTurn(4);
+             return 1;
+           }
+   } else {
+     computerTurnOld();
+   }
  }
+
+
 
 
     int play(){
@@ -195,7 +222,6 @@ public:
 
 int main() {
     Board myBoard;
-
     myBoard.play();
 
 
