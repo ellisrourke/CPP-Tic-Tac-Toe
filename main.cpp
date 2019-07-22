@@ -36,7 +36,21 @@ public:
           }
           gameOver = true;
           return 1;
-        }else{
+        }
+
+
+        for(int i=0;i<3;i++){
+          //Check For horizontal wins
+          if(board[i] == board[i+3] && board[i] == board[i+6]){
+            if(board[i] == "X"){
+              cout << "Computer Wins" << endl;
+            } else {
+              cout << "Player Wins" << endl;
+            }
+            gameOver = true;
+            return 1;
+          }
+
           //Check for vertical Wins
           //cout << board[i] << board[i+3] << board[i+6] << endl;
         }
