@@ -21,12 +21,10 @@ public:
 
     //member functions
     int inArray(vector<int> &arr,int check) {
-        int x =-1;
-        x = (find(arr.begin(), arr.end(), check) != arr.end());
-        if(x==-1){
-          return 0;
+    if(find(arr.begin(), arr.end(), check) != arr.end()){
+          return 1;
         } else {
-          return x;
+          return 0;
         }
     }
 
@@ -69,26 +67,6 @@ public:
       }
     }
 
-    void updateBoard2D(int i,char player){
-        //find array index to update
-        int x = i % 3;    // % is the "modulo operator", the remainder of i / width;
-        int y = i / 3;    // where "/" is an integer division
-        cout << "board [" << x << "][" << y << "]" << endl;
-        board[y][x] = player;
-        displayBoard2D();
-
-
-    }
-
-    void displayBoard2D(){
-        for(int x=0;x<3;x++){
-            for(int y=0;y<3;y++){
-                cout << board[x][y] << " ";
-            }
-            cout <<  endl ;
-        }
-    }
-
     void updateBoard(int i,char player){
         board[i] = player;
         filled.push_back(i);
@@ -125,13 +103,6 @@ public:
         }
       }
 
-    void computerTurnOld(){
-        int num = rand() % 9;
-        while(inArray(filled,num)==0){
-          num = rand() % 9;
-        }
-          submitComputerTurn(num);
-   }
 
    void submitComputerTurn(int x){
      updateBoard(x,'X');
@@ -184,7 +155,6 @@ public:
      } else if(board[8]==board[4]){
        submitComputerTurn(0);
        return 1;
-     }
   } else if(inArray(filled,4)==0){
            if(board[0]==board[8]){
              submitComputerTurn(4);
@@ -193,7 +163,7 @@ public:
              submitComputerTurn(4);
              return 1;
            }
-   } else {
+  } else {
      int num = rand() % 9;
      while(inArray(filled,num)==0){
        num = rand() % 9;
@@ -201,9 +171,7 @@ public:
           submitComputerTurn(num);
  }
 }
-
-
-
+}
 
     int play(){
         displayBoard();
