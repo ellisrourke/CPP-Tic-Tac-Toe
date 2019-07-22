@@ -25,40 +25,48 @@ public:
         return x;
     }
 
+    void outputWinner(int i){
+      if(board[i] == "X"){
+        cout << "Computer Wins" << endl;
+      } else {
+        cout << "Player Wins" << endl;
+      }
+      gameOver = true;
+    }
+
+
     int checkWin(){
       for(int i=0;i<9;i+=3){
-        //Check For horizontal wins
+        //Check for horizontal wins
         if(board[i] == board[i+1] && board[i] == board[i+2]){
-          if(board[i] == "X"){
-            cout << "Computer Wins" << endl;
-          } else {
-            cout << "Player Wins" << endl;
-          }
-          gameOver = true;
+          outputWinner(i);
+          //gameOver = true;
           return 1;
+          }
         }
 
 
-
-
-
-          //for(int k=0;k<3;K++){
-            //Check for diagonalWins
-        //  }
-        }
+        //Check for vertical wins
         for(int j=0;j<3;j++){
           //Check For horizontal wins
           if(board[j] == board[j+3] && board[j] == board[j+6]){
-            if(board[j] == "X"){
-              cout << "Computer Wins" << endl;
-            } else {
-              cout << "Player Wins" << endl;
-            }
-            gameOver = true;
+            outputWinner(j);
+            //gameOver = true;
             return 1;
           }
       }
+
+
+
+        //Check for diagonalWins
+      if(board[0]==board[4] && board[0]==board[8]){
+        outputWinner(0);
+      } else if(board[2]==board[4]&&board[2]==board[6]){
+        outputWinner(2);
+      }
     }
+
+
 
     void updateBoard2D(int i,char player){
         //find array index to update
