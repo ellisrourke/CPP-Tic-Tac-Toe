@@ -3,8 +3,7 @@
 #include <ctime>
 #include <vector>
 #include <algorithm>
-//newChange2
-//3
+//new
 using namespace std;
 class Board{
 public:
