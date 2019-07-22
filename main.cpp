@@ -130,9 +130,7 @@ public:
         while(inArray(filled,num)==0){
           num = rand() % 9;
         }
-            updateBoard(num,'X');
-            displayBoard();
-            filled.push_back(num);
+          submitComputerTurn(num);
    }
 
    void submitComputerTurn(int x){
@@ -196,9 +194,13 @@ public:
              return 1;
            }
    } else {
-     computerTurnOld();
+     int num = rand() % 9;
+     while(inArray(filled,num)==0){
+       num = rand() % 9;
    }
+          submitComputerTurn(num);
  }
+}
 
 
 
@@ -209,11 +211,11 @@ public:
           if(gameOver==false){
             humanTurn();
             }
-            if(totalTurns<9 && gameOver==false){
-                computerTurn();
-              } else {
-                return 0;
-              }
+          if(totalTurns<9 && gameOver==false){
+              computerTurn();
+            } else {
+              return 0;
+            }
         }
     }
 
