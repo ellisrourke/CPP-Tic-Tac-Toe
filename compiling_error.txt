@@ -1,0 +1,18 @@
+C:\Users\Ellis\Documents\GitHub\tictactoe\main.cpp:201:1: error: expected '}' at end of input
+ }
+ ^
+C:\Users\Ellis\Documents\GitHub\tictactoe\main.cpp: In member function 'void Board::computerTurn()':
+C:\Users\Ellis\Documents\GitHub\tictactoe\main.cpp:164:54: error: expected ')' before '{' token
+        if(board[j]==board[j+3] && inArray(filled,j+6){
+                                                      ^
+C:\Users\Ellis\Documents\GitHub\tictactoe\main.cpp:168:4: error: expected primary-expression before '}' token
+    }
+    ^
+C:\Users\Ellis\Documents\GitHub\tictactoe\main.cpp:171:15: error: a function-definition is not allowed here before '{' token
+     int play(){
+               ^
+C:\Users\Ellis\Documents\GitHub\tictactoe\main.cpp:201:1: error: expected '}' at end of input
+ }
+ ^
+C:\Users\Ellis\Documents\GitHub\tictactoe\main.cpp: At global scope:
+C:\Users\Ellis\Documents\GitHub\tictactoe\main.cpp:201:1: error: expected unqualified-id at end of input

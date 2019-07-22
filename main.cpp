@@ -21,8 +21,13 @@ public:
 
     //member functions
     int inArray(vector<int> &arr,int check) {
-        int x = (find(arr.begin(), arr.end(), check) != arr.end());
-        return x;
+        int x =-1;
+        x = (find(arr.begin(), arr.end(), check) != arr.end());
+        if(x==-1){
+          return 0;
+        } else {
+          return x;
+        }
     }
 
     void outputWinner(int i){
@@ -34,17 +39,15 @@ public:
       gameOver = true;
     }
 
-
     int checkWin(){
       for(int i=0;i<9;i+=3){
         //Check for horizontal wins
         if(board[i] == board[i+1] && board[i] == board[i+2]){
           outputWinner(i);
-          //gameOver = true;
+          gameOver = true;
           return 1;
           }
         }
-
 
         //Check for vertical wins
         for(int j=0;j<3;j++){
@@ -66,8 +69,6 @@ public:
       }
     }
 
-
-
     void updateBoard2D(int i,char player){
         //find array index to update
         int x = i % 3;    // % is the "modulo operator", the remainder of i / width;
@@ -78,6 +79,7 @@ public:
 
 
     }
+
     void displayBoard2D(){
         for(int x=0;x<3;x++){
             for(int y=0;y<3;y++){
@@ -95,6 +97,7 @@ public:
         //cout << totalTurns << endl;
 
     }
+
     void displayBoard(){
         for(int i=1;i<10;i++){
             cout << " | " << board[i-1];
@@ -107,7 +110,6 @@ public:
         cout << "-----------------------";
         cout << endl;
     }
-
 
     void humanTurn(){
       if(gameOver == false){
@@ -123,19 +125,47 @@ public:
         }
       }
 
-
-    void computerTurn(){
-
+    void computerTurnOld(){
         int num = rand() % 9;
-
-
         while(inArray(filled,num)==1){
           num = rand() % 9;
         }
             updateBoard(num,'X');
             displayBoard();
             filled.push_back(num);
-        }
+   }
+
+   void submitComputerTurn(int x){
+     updateBoard(x,'X');
+     displayBoard();
+     filled.push_back(x);
+   }
+
+   void computerTurn(){
+     //check for possible horizontal moves
+     for(int i=0;i<9;i+=3){
+       //check if end pos is free
+       if(board[i]==board[i+1] && inArray(filled,i+2)==0){
+         submitComputerTurn(i+2);
+         break;
+         //check if middle is free
+       } else if(board[i]==board[i+2] && inArray(filled,i+1)==0){
+         submitComputerTurn(i+1);
+         break;
+         //check if first pos is free
+       } else if(board[i+1]==board[i+2]  && inArray(filled,i)==0){
+         submitComputerTurn(i);
+         break;
+       }
+     }
+     //////////////////////////////////////////////
+     //check vertical moves
+     for(int j=0;j<3;j++){
+       if(board[j]==board[j+3] && inArray(filled,j+6){
+         submitComputerTurn(j+6);
+         break;
+     }
+   }
 
 
     int play(){
