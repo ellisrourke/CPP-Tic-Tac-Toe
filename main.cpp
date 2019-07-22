@@ -80,9 +80,7 @@ public:
         for(int i=1;i<10;i++){
             cout << " | " << board[i-1];
             if(i%3==0){
-
                 cout << " |" << endl;
-
             }
         }
         cout << "-----------------------";
@@ -99,7 +97,6 @@ public:
         pos--;
             updateBoard(pos,'0');
             displayBoard();
-            filled.push_back(pos);
         }
       }
 
@@ -107,7 +104,6 @@ public:
    void submitComputerTurn(int x){
      updateBoard(x,'X');
      displayBoard();
-     filled.push_back(x);
      cout << "The computer chose position " << x << endl;
    }
 
@@ -155,6 +151,7 @@ public:
      } else if(board[8]==board[4]){
        submitComputerTurn(0);
        return 1;
+     }
   } else if(inArray(filled,4)==0){
            if(board[0]==board[8]){
              submitComputerTurn(4);
@@ -163,14 +160,14 @@ public:
              submitComputerTurn(4);
              return 1;
            }
-  } else {
+  }
      int num = rand() % 9;
-     while(inArray(filled,num)==0){
+     while(inArray(filled,num)==1){
        num = rand() % 9;
    }
-          submitComputerTurn(num);
- }
-}
+      submitComputerTurn(num);
+
+
 }
 
     int play(){
