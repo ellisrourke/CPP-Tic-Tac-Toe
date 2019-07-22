@@ -20,7 +20,7 @@ public:
     bool gameOver = false;
 
     //member functions
-    int inArray(vector<int> &arr,int check) {
+   int inArray(vector<int> &arr,int check) {
     if(find(arr.begin(), arr.end(), check) != arr.end()){
           return 1;
         } else {
@@ -28,7 +28,7 @@ public:
         }
     }
 
-    void outputWinner(int i){
+   void outputWinner(int i){
       if(board[i] == "X"){
         cout << "Computer Wins" << endl;
       } else {
@@ -37,7 +37,7 @@ public:
       gameOver = true;
     }
 
-    int checkWin(){
+   int checkWin(){
       for(int i=0;i<9;i+=3){
         //Check for horizontal wins
         if(board[i] == board[i+1] && board[i] == board[i+2]){
@@ -67,7 +67,7 @@ public:
       }
     }
 
-    void updateBoard(int i,char player){
+   void updateBoard(int i,char player){
         board[i] = player;
         filled.push_back(i);
         totalTurns++;
@@ -76,7 +76,7 @@ public:
 
     }
 
-    void displayBoard(){
+   void displayBoard(){
         for(int i=1;i<10;i++){
             cout << " | " << board[i-1];
             if(i%3==0){
@@ -87,7 +87,7 @@ public:
         cout << endl;
     }
 
-    void humanTurn(){
+   void humanTurn(){
       if(gameOver == false){
       int pos=-1;
         while(pos>9 || pos<1 || inArray(filled,pos-1)==1){
@@ -99,7 +99,6 @@ public:
             displayBoard();
         }
       }
-
 
    void submitComputerTurn(int x){
      updateBoard(x,'X');
@@ -166,11 +165,9 @@ public:
        num = rand() % 9;
    }
       submitComputerTurn(num);
-
-
 }
 
-    int play(){
+   int play(){
         displayBoard();
         while(totalTurns<9){
           if(gameOver==false){
