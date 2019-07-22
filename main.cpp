@@ -139,6 +139,7 @@ public:
      updateBoard(x,'X');
      displayBoard();
      filled.push_back(x);
+     cout << "The computer chose position " << x << endl;
    }
 
    void computerTurn(){
@@ -161,11 +162,18 @@ public:
      //////////////////////////////////////////////
      //check vertical moves
      for(int j=0;j<3;j++){
-       if(board[j]==board[j+3] && inArray(filled,j+6){
+       if(board[j]==board[j+3] && inArray(filled,j+6)==0){
          submitComputerTurn(j+6);
          break;
+     } else if(board[j]==board[j+6] && inArray(filled,j+3)==0){
+       submitComputerTurn(j+3);
+       break;
+     } else if(board[j+3]==board[j+6] && inArray(filled,j)==0){
+       submitComputerTurn(j);
+       break;
      }
    }
+ }
 
 
     int play(){
