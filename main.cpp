@@ -3,7 +3,7 @@
 #include <ctime>
 #include <vector>
 #include <algorithm>
-//new from xcode
+//new from clion 11:11
 using namespace std;
 class Board{
 public:
