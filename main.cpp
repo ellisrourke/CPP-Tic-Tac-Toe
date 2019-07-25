@@ -148,16 +148,16 @@ public:
    //check diagonal moves (already including centre)
    //check if middle
    if(inArray(filled,4)==1){
-     if(board[0]==board[4]){
+     if(board[0]==board[4] && inArray(filled,8)==0){
        submitComputerTurn(8);
        return 1;
-     } else if(board[2]==board[4]){
+     } else if(board[2]==board[4] && inArray(filled,6)==0){
        submitComputerTurn(6);
        return 1;
-     } else if(board[6]==board[4]){
+     } else if(board[6]==board[4] && inArray(filled,2)==0){
        submitComputerTurn(2);
        return 1;
-     } else if(board[8]==board[4]){
+     } else if(board[8]==board[4] && inArray(filled,0)==0){
        submitComputerTurn(0);
        return 1;
      }
@@ -186,9 +186,11 @@ int play(){
             }
           if(totalTurns<9 && gameOver==false){
               computerTurn();
-            } else {
-              return 0;
             }
+        }
+        if(totalTurns>8 && gameOver==false){
+          cout << "The game is a tie" << endl;
+          return 0;
         }
     }
 
